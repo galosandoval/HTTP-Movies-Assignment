@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import MovieCard from "./MovieCard";
 
 function Movie({ addToSavedList }) {
@@ -27,9 +27,9 @@ function Movie({ addToSavedList }) {
     return <div>Loading movie information...</div>;
   }
 
-  const goToUpdateMovie = () => {
-    history.push(`/update-movie/${params.id}`)
-  }
+  // const goToUpdateMovie = () => {
+  //   history.push(`/update-movie/${movie.id}`)
+  // }
 
   return (
     <div className="save-wrapper">
@@ -38,7 +38,7 @@ function Movie({ addToSavedList }) {
       <div className="save-button" onClick={saveMovie}>
         Save
       </div>
-      <button onClick={goToUpdateMovie}>Update</button>
+      <Link key={movie.id} to={`/update-movies/${movie.id}`}>Update</Link>
     </div>
   );
 }
