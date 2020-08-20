@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Route } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import SavedList from "./Movies/SavedList";
 import MovieList from "./Movies/MovieList";
 import Movie from "./Movies/Movie";
 import axios from "axios";
 import { UpdateMovie } from "./Movies/UpdateMovie";
+import { AddMovie } from "./Movies/AddMovie";
 
 const App = () => {
   const [savedList, setSavedList] = useState([]);
@@ -21,7 +22,7 @@ const App = () => {
     setSavedList([...savedList, movie]);
   };
 
-  getMovieList()
+  getMovieList();
 
   useEffect(() => {
     getMovieList();
@@ -38,8 +39,12 @@ const App = () => {
       <Route path="/movies/:id">
         <Movie addToSavedList={addToSavedList} />
       </Route>
-      <Route exact path='/update-movies/:id'>
-        <UpdateMovie  />
+      <Route exact path="/update-movies/:id">
+        <UpdateMovie />
+      </Route>
+      <Link to='/add-movie'>Add a Movie</Link>
+      <Route path="/add-movie">
+        <AddMovie setMovieList={setMovieList} />
       </Route>
     </>
   );

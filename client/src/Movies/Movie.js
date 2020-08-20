@@ -6,7 +6,6 @@ import MovieCard from "./MovieCard";
 function Movie({ addToSavedList }) {
   const [movie, setMovie] = useState(null);
   const params = useParams();
-  const history = useHistory();
 
   const fetchMovie = (id) => {
     axios
@@ -26,10 +25,6 @@ function Movie({ addToSavedList }) {
   if (!movie) {
     return <div>Loading movie information...</div>;
   }
-
-  // const goToUpdateMovie = () => {
-  //   history.push(`/update-movie/${movie.id}`)
-  // }
 
   return (
     <div className="save-wrapper">
